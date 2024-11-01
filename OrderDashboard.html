@@ -1,0 +1,59 @@
+<p class="current-date-time">
+  Date Time : {{currentDate | date: 'dd-MM-yyyy hh:mm a'}}
+</p>
+<div class="session-expired" ng-show="sessionExpired">
+  Your session is expired.<br />
+  Click <a href="#login">here</a> to login again.
+</div>
+<div id="totalOrdersDiv" ng-hide="sessionExpired">
+  <div class="row justify-content-center">
+    <div class="col-sm-3">
+      <label for="start">Month:</label>
+      <input
+        type="month"
+        id="start"
+        name="start"
+        min="2021-01"
+        max="{{currentDate | date: 'yyyy-MM'}}"
+        ng-model="monthYear"
+      />
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="card border shadow rounded-3 col-sm-5 custom-card">
+      <div class="card-body center">
+        <h5>Total number of Orders</h5>
+        <h1>
+          <a class="black-link" href="#orders" ng-click="onOrdersTabClick()"
+            >{{totalOrders}}</a
+          >
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="card border shadow rounded-3 col-sm-5 custom-card">
+      <div class="card-body center">
+        <h5>Number of Segmented Orders</h5>
+        <h1>
+          <a class="green-link" href="#orders" ng-click="onSegmentedTabClick()"
+            >{{totalSegmentedOrders}}</a
+          >
+        </h1>
+      </div>
+    </div>
+    <div class="card border shadow rounded-3 col-sm-5 custom-card">
+      <div class="card-body center">
+        <h5>Number of Unsegmented Orders</h5>
+        <h1>
+          <a
+            class="red-link"
+            href="#unsegmented"
+            ng-click="onUnsegmentedTabClick()"
+            >{{totalUnsegmentedOrders}}</a
+          >
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
