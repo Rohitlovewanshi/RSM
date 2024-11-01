@@ -1,0 +1,524 @@
+body {
+  background: #fff;
+  font-family: "Varela Round", sans-serif;
+  font-size: 15px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.center {
+  text-align: center;
+}
+
+#genderRadioFieldSet {
+  margin-left: 16px;
+}
+
+#createDiv {
+  margin: 30px 160px;
+}
+
+#otherInputRadio {
+  margin-left: 15px;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+/* 
+#cognizant-logo-img {
+  width: 200px;
+  height: 120px;
+  margin-top: -25px;
+} */
+
+/* #cognizant-logo-img-footer {
+  width: 200px;
+  height: 120px;
+  margin-top: -40px;
+} */
+
+.custom-form-group {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#modalSuccessCard {
+  position: relative;
+  width: 320px;
+  display: block;
+  margin: 50px auto;
+  margin-top: 40px;
+  text-align: center;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+#contBtn {
+  position: relative;
+  top: 1.5em;
+  text-decoration: none;
+  background: #8bc34a;
+  color: #fff;
+  margin: auto;
+  padding: 0.8em 3em;
+  -webkit-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  -moz-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  border-radius: 25px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+#contBtn:hover {
+  -webkit-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  -moz-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.list-card {
+  margin-top: 0px;
+  margin-left: -40px;
+}
+
+.unorderdList {
+  list-style-type: none;
+}
+
+.list-view {
+  width: 1500px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.card-title {
+  margin-bottom: 5px;
+}
+
+#red-link {
+  color: red;
+}
+
+.search-box {
+  margin-left: 40px;
+}
+
+.all-heading {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.edit-div {
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+#filterOrderDashboardForm {
+  float: right;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -5px;
+}
+
+#filterOrderDashboardForm label {
+  font-size: 15px;
+}
+
+#ordersTableDiv {
+  min-height: 66vh;
+}
+
+#ordersTable thead {
+  background-color: white;
+  font-size: 15px;
+}
+
+.table-condensed {
+  font-size: 14px;
+}
+
+.orderDetailsHeader {
+  margin-top: 5px;
+  padding: 8px 30px 3px 30px;
+  background-color: rgb(50, 50, 126);
+  color: white;
+}
+
+.orderDetailsHeader a.edit-link {
+  color: yellow;
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+.detailsUnderHeader {
+  padding: 10px 30px 5px 30px;
+  color: rgba(0, 0, 0, 0.808);
+}
+
+.detailsUnderHeader div a {
+  color: red;
+  font-size: 12px;
+}
+
+.pagePadding {
+  margin: -25px auto;
+  padding-bottom: 13px;
+}
+
+#productDetailsTable {
+  margin-top: -5px;
+}
+
+#productDetailsTable tr {
+  border-bottom: 1pt solid rgb(212, 210, 210);
+}
+
+#totalAmountDiv {
+  text-align: end;
+  margin-right: 110px;
+  width: 100%;
+}
+
+.pagination {
+  float: right;
+  margin: 0 0 5px;
+}
+.pagination li a {
+  border: none;
+  font-size: 15px;
+  min-width: 30px;
+  min-height: 30px;
+  color: rgb(73, 71, 71);
+  margin: 0 2px;
+  line-height: 30px;
+  border-radius: 2px !important;
+  text-align: center;
+  padding: 0 6px;
+}
+.pagination li a:hover {
+  color: rgb(73, 71, 71);
+}
+.pagination li.active a {
+  background: #03a9f4;
+}
+.pagination li.active a:hover {
+  background: #0397d6;
+}
+.pagination li.disabled i {
+  color: rgba(204, 204, 204, 0.829);
+}
+.pagination li i {
+  font-size: 15px;
+  padding-top: 6px;
+}
+
+#footerCopyRightText {
+  margin-top: -35px;
+}
+
+#nullText a {
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#backArrow {
+  position: relative;
+  top: 3px;
+  left: -5px;
+}
+
+#totalOrdersTxt {
+  color: rgb(73, 71, 71);
+  position: relative;
+  top: 5px;
+  left: 6px;
+}
+
+.current-date-time {
+  text-align: end;
+  color: rgb(73, 71, 71);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+#profileView {
+  margin-top: -30px;
+  padding-bottom: 5px;
+}
+
+#no_orders_found_txt {
+  margin-top: -170px;
+  padding-bottom: 130px;
+}
+
+#no_orders_found_txt p {
+  text-align: center;
+}
+
+.session-expired {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.session-expired a {
+  display: contents;
+}
+
+.filter-icon {
+  margin-top: 5px;
+  opacity: 0.7;
+  margin-right: 10px;
+}
+
+#createRsmIdBtn {
+  font-size: 11px;
+}
+
+.border-right {
+  border-right: thin solid;
+}
+
+#homePage {
+  font-size: 16px;
+  min-height: 75vh;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.black-link,
+.green-link,
+.red-link {
+  font-size: 80px;
+}
+
+a.black-link:link {
+  color: black;
+  text-decoration: none;
+}
+
+a.black-link:visited {
+  color: black;
+}
+
+a.black-link:hover {
+  color: rgb(78, 75, 75);
+}
+
+a.black-link:active {
+  color: rgb(78, 75, 75);
+}
+
+a.green-link:link {
+  color: green;
+  text-decoration: none;
+}
+
+a.green-link:visited {
+  color: green;
+}
+
+a.green-link:hover {
+  color: rgb(2, 66, 2);
+}
+
+a.green-link:active {
+  color: rgb(2, 66, 2);
+}
+
+a.red-link:link {
+  color: red;
+  text-decoration: none;
+}
+
+a.red-link:visited {
+  color: red;
+}
+
+a.red-link:hover {
+  color: rgb(112, 5, 5);
+}
+
+a.red-link:active {
+  color: rgb(112, 5, 5);
+}
+
+.login-register-page {
+  background: url("../images/background.png") no-repeat center center fixed;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+  overflow: auto;
+  overflow-x: hidden;
+  padding-bottom: 7px;
+}
+
+.cognizant-logo {
+  margin-left: 50px;
+  font-size: 60px;
+  color: white;
+}
+
+.rsm-title {
+  font-size: 30px;
+  color: white;
+  margin-top: 30px;
+}
+
+#totalOrdersDiv {
+  margin-top: -30px;
+  padding-bottom: 20px;
+  padding-right: 30px;
+}
+
+.custom-card {
+  margin: 10px;
+  padding: 10px;
+}
+
+#usernameSpan {
+  overflow: hidden;
+  margin-top: -6px;
+}
+
+#movingText {
+  color: white;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.table tr {
+  text-align: center;
+}
+
+/* TopBar */
+
+#topBar {
+  background-image: url("../images/navbar_background.png");
+  padding: 10px;
+  width: 100%;
+}
+
+#topBarRsmTitle {
+  text-align: center;
+  color: white;
+}
+
+#usernameSpan {
+  color: white;
+  text-align: center;
+  display: inline-block;
+}
+
+#topBarRightDiv {
+  text-align: end;
+  margin-top: -37px;
+  position: relative;
+  z-index: 1;
+}
+
+#topBar a {
+  color: rgba(255, 255, 255, 0.603);
+  text-decoration: none;
+}
+
+#topBar a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* Sidebar */
+
+.wrapper {
+  width: 100%;
+}
+
+#sidebar {
+  width: 250px;
+  position: fixed;
+  color: #fff;
+  margin-left: -10px;
+}
+
+#sidebar li {
+  list-style-type: none;
+}
+
+.sidebar-item {
+  width: 150px;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  color: rgba(255, 255, 255, 0.712);
+  background-color: rgb(7, 7, 97);
+  text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+  color: white;
+  background-color: rgb(30, 30, 180);
+}
+
+#sidebar ul li a:active {
+  color: white;
+  background-color: blue;
+}
+
+#sidebar ul li.active a {
+  color: white;
+}
+
+#sidebar ul li a span {
+  font-size: 40px;
+}
+
+/* Content */
+
+#content {
+  width: calc(100% - 220px);
+  padding-top: 60px;
+  padding-right: 17px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* footer */
+
+#footerBar {
+  background-image: url("../images/navbar_background.png");
+  margin-left: -220px;
+  margin-right: -20px;
+}
+
+.countryCodeForm {
+  text-align: center;
+}
