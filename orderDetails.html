@@ -1,0 +1,227 @@
+<div class="session-expired" ng-show="sessionExpired">
+  Your session is expired.<br />
+  Click <a href="#login">here</a> to login again.
+</div>
+<p ng-hide="sessionExpired" class="current-date-time">
+  Date Time : {{currentDate | date: 'dd-MM-yyyy hh:mm a'}}
+</p>
+<div class="pagePadding" ng-hide="sessionExpired">
+  <h4>
+    <a id="backArrow" href="" ng-click="goBack()"
+      ><span class="material-icons"> keyboard_backspace </span></a
+    >&nbsp;Order #{{order.orderId}}
+  </h4>
+  <div class="row orderDetailsHeader">
+    <h5>Organisation Detail</h5>
+  </div>
+  <div class="row detailsUnderHeader">
+    <div class="col-sm-3"><b>Organisation Id :</b></div>
+    <div class="col-sm-9">{{order.organisationId}}</div>
+    <div class="col-sm-3"><b>Organisation Name :</b></div>
+    <div class="col-sm-9">{{order.organisationName}}</div>
+    <div class="col-sm-3"><b>Location :</b></div>
+    <div class="col-sm-9">{{order.locationName}}</div>
+    <div class="col-sm-3"><b>RSM ID :</b></div>
+    <div class="col-sm-9" ng-show="order.rsmId!=null">{{order.rsmId}}</div>
+    <div
+      class="col-sm-9"
+      ng-show="order.rsmId==null && roleId==2"
+      style="color: red"
+    >
+      Unsegmented
+    </div>
+    <div class="col-sm-9" ng-show="order.rsmId==null && roleId==1">
+      <a ng-click="onClickCreateRsmId()" href="" ng-hide="createRsmId"
+        >Click to create RSM ID</a
+      >
+      <input
+        type="text"
+        ng-show="createRsmId"
+        ng-model="newRsmId"
+      />&nbsp;<button
+        id="createRsmIdBtn"
+        class="btn btn-primary btn-sm"
+        type="button"
+        ng-show="createRsmId"
+        ng-click="onCreateRsmIdBtnClick(newRsmId)"
+        ng-disabled="newRsmId=='' || newRsmId==undefined"
+      >
+        Create
+      </button>
+      <span
+        style="font-size: 10px; display: inline-block"
+        ng-show="createRsmId"
+      >
+        For Example - RSM ID : AK01Y001 Where AK represent the Partner, 01Y
+        represent constant and 001 is a sequential 3 digit number generated for
+        each branch of the Partner.
+      </span>
+    </div>
+  </div>
+  <div class="row orderDetailsHeader">
+    <h5>Customer Detail</h5>
+    &nbsp;&nbsp;&nbsp;
+    <a
+      href=""
+      class="edit-link"
+      ng-click="onCustomerEditLinkClick()"
+      ng-hide="editCustomerLinkClicked"
+      >Edit</a
+    >
+  </div>
+  <div class="row detailsUnderHeader">
+    <div class="col-sm-3"><b>Customer Id :</b></div>
+    <div class="col-sm-9">
+      <span ng-hide="editCustomerLinkClicked">{{order.customerId}}</span>
+      <span ng-show="editCustomerLinkClicked">
+        <input type="text" ng-model="order.customerId" />&nbsp;
+      </span>
+    </div>
+    <div class="col-sm-3"><b>Customer Name :</b></div>
+    <div class="col-sm-9">
+      <span ng-hide="editCustomerLinkClicked">{{order.customerName}}</span>
+      <span ng-show="editCustomerLinkClicked">
+        <input type="text" ng-model="order.customerName" />&nbsp;
+      </span>
+    </div>
+    <div class="col-sm-3"><b>Email :</b></div>
+    <div class="col-sm-9">
+      <span ng-hide="editCustomerLinkClicked">{{order.customerEmail}}</span>
+      <span ng-show="editCustomerLinkClicked">
+        <input type="text" ng-model="order.customerEmail" />&nbsp;
+      </span>
+    </div>
+    <div class="col-sm-3"><b>Phone :</b></div>
+    <div class="col-sm-9">
+      <span ng-hide="editCustomerLinkClicked">{{order.phone}}</span>
+      <span ng-show="editCustomerLinkClicked">
+        <input type="text" ng-model="order.phone" />&nbsp;
+      </span>
+    </div>
+    <div class="col-sm-3"><b>Address : </b></div>
+    <div class="col-sm-9">
+      <span ng-hide="editCustomerLinkClicked">{{order.address}}</span>
+      <span ng-show="editCustomerLinkClicked">
+        <input type="text" ng-model="order.address" />&nbsp;
+      </span>
+    </div>
+    <div class="col-sm-3 mt-2" ng-show="editCustomerLinkClicked"></div>
+    <div class="col-sm-1 mt-2" ng-show="editCustomerLinkClicked">
+      <button
+        id="savebtn"
+        class="btn btn-primary btn-sm"
+        type="button"
+        ng-click="saveCustomerName(order)"
+        ng-disabled="order.customerName=='' || order.customerName==undefined"
+      >
+        Save
+      </button>
+    </div>
+    <div class="col-sm-1 mt-2" ng-show="editCustomerLinkClicked">
+      <button
+        id="savebtn"
+        class="btn btn-primary btn-sm"
+        type="button"
+        ng-click="cancelEditCustomer()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+  <div class="row orderDetailsHeader">
+    <h5>Order Detail</h5>
+  </div>
+  <div class="row detailsUnderHeader">
+    <div class="col-sm-3"><b>Order Id :</b></div>
+    <div class="col-sm-9">{{order.orderId}}</div>
+    <div class="col-sm-3"><b>Date Time :</b></div>
+    <div class="col-sm-9">{{order.createdAt | date:'dd/MM/yyyy hh:mm a'}}</div>
+    <div class="col-sm-3"><b>Status :</b></div>
+    <div class="col-sm-9">
+      {{order.billingId!=null?'Completed':'Inprogress'}}
+    </div>
+  </div>
+  <div class="row orderDetailsHeader">
+    <h5>Order Description</h5>
+  </div>
+  <div class="row detailsUnderHeader">
+    <table class="table table-borderless" id="productDetailsTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Product Name</th>
+          <th>Price($)</th>
+          <th>Quantity</th>
+          <th>Sub Total ($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in order.products">
+          <td>{{$index + 1}}</td>
+          <td>{{product.productName}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.price*product.quantity}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="totalAmountDiv">
+      <b>Total Amount &nbsp;&nbsp; = &nbsp;&nbsp;</b>${{totalAmount}}
+    </div>
+  </div>
+  <br />
+</div>
+
+<!-- <div
+  class="modal fade"
+  id="editCustomerDetailsModel"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editCustomerDetailsModelTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <h3>Edit Customer Details</h3>
+      <form
+        name="editCustomerform"
+        novalidate
+        ng-submit="saveCustomer(customer)"
+        class="custom-form-group"
+      >
+        <div class="form-group">
+          <label class="required form-control-placeholder">Customer Id</label>
+          <input
+            type="text"
+            class="form-control"
+            ng-model="user.firstName"
+            name="firstName"
+            required
+          />
+          <div
+            class="text-danger"
+            ng-show="registerform.firstName.$touched && !user.firstName.length"
+          >
+            <small>Please enter customer name</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="required form-control-placeholder">Customer Name</label>
+          <input
+            type="text"
+            class="form-control"
+            ng-model="user.firstName"
+            name="firstName"
+            required
+          />
+          <div
+            class="text-danger"
+            ng-show="registerform.firstName.$touched && !user.firstName.length"
+          >
+            <small>Please enter first name</small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
