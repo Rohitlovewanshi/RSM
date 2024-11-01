@@ -1,0 +1,112 @@
+<div class="login-register-page">
+  <div class="row">
+    <div class="col-md-2 cognizant-logo"><b>Cognizant</b></div>
+    <div class="col-md-7 text-center rsm-title">
+      &nbsp;&nbsp;<b>Revenue Segmentation</b>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-10 col-md-7 col-lg-5 col-xl-5 login-card">
+        <div
+          class="alert alert-danger center"
+          id="loginErrorAlert"
+          ng-show="loginErrorAlert"
+        >
+          {{errorMsg}}
+        </div>
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body pt-4 px-4 pb-3">
+            <h5 class="card-title text-center mb-5 fw-light fs-5">Sign in</h5>
+            <form
+              name="loginform"
+              novalidate
+              ng-submit="login(user)"
+              class="custom-form-group"
+            >
+              <div class="form-group">
+                <label class="required">Username</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                  name="username"
+                  placeholder="Email"
+                  ng-model="user.email"
+                  required
+                />
+                <div
+                  class="text-danger"
+                  ng-show="loginform.username.$touched && loginform.username.$invalid"
+                >
+                  <small>Please enter valid email address</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">Password</label>
+                <div class="input-group">
+                  <input
+                    type="{{typePassword ? 'text' : 'password' }}"
+                    class="form-control"
+                    name="password"
+                    placeholder="Password"
+                    ng-model="user.password"
+                    data-toggle="password"
+                    required
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text" ng-click="togglePassword()">
+                      <a href=""
+                        ><i class="fa fa-eye" ng-hide="typePassword"></i
+                        ><i class="fa fa-eye-slash" ng-hide="!typePassword"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    ng-model="user.rememberMe"
+                  />
+                  Remember me
+                </label>
+              </div>
+              <div class="d-grid center">
+                <input
+                  type="submit"
+                  class="btn btn-primary btn-login"
+                  value="Login"
+                  ng-disabled="loginform.$invalid"
+                  ng-hide="loading"
+                />
+                <button class="btn btn-primary" disabled ng-show="loading">
+                  <span class="spinner-border spinner-border-sm"></span>
+                  Signing...
+                </button>
+              </div>
+              <hr class="my-3" />
+              <div class="d-grid mb-2 center">
+                New user? <a href="#register">Click here</a>
+              </div>
+              <div class="center my-3">
+                <small>© Cognizant Ltd. All rights reserved, 2021</small>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <marquee
+        id="movingText"
+        direction="left"
+        height="25"
+        width="100%"
+        scrollamount="11"
+      >
+        <i>"One-stop solution for Financial allocations"</i></marquee
+      >
+    </div>
+  </div>
+</div>
