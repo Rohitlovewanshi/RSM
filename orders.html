@@ -1,0 +1,223 @@
+<p class="current-date-time">
+  Date Time : {{currentDate | date: 'dd-MM-yyyy hh:mm a'}}
+</p>
+<div class="session-expired" ng-show="sessionExpired">
+  Your session is expired.<br />
+  Click <a href="#login">here</a> to login again.
+</div>
+<div id="ordersPage" ng-hide="sessionExpired">
+  <form id="filterOrderDashboardForm" name="filterOrderForm" novalidate>
+    <div class="form-group row justify-content-md-center">
+      <span class="filter-icon"><i class="fa fa-filter"></i></span>
+      <!-- <label for="inputCustomerName" class="col-form-label col-form-label-sm"
+        >Customer Name</label
+      > -->
+      <div class="col-sm">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          id="inputCustomerName"
+          ng-model="search.customerName"
+          placeholder="Customer Name"
+        />
+      </div>
+      <!-- <label for="inputOrganisation" class="col-form-label col-form-label-sm"
+        >Organisation</label
+      > -->
+      <div class="col-sm">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          id="inputOrganisation"
+          ng-model="search.organisationName"
+          placeholder="Organisation"
+        />
+      </div>
+      <!-- <label for="inputLocation" class="col-form-label col-form-label-sm"
+        >Location</label
+      > -->
+      <div class="col-sm">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          id="inputLocation"
+          ng-model="search.locationName"
+          placeholder="Location"
+        />
+      </div>
+      <div class="col-sm">
+        <input
+        type="month"
+        id="start"
+        name="start"
+        class="form-control form-control-sm"
+        min="2021-01"
+        max="{{currentDate | date: 'yyyy-MM'}}"
+        ng-model="monthYear"
+      />
+      </div>
+      <label class="col-form-label col-form-label-sm">Status</label>
+      <div class="col-sm">
+        <select class="form-control form-control-sm" ng-model="search.status">
+          <option>Any</option>
+          <option>Segmented</option>
+          <option>Unsegmented</option>
+        </select>
+      </div>
+      <button
+        ng-click="applyFilter(search)"
+        type="button"
+        class="btn btn-primary btn-sm"
+      >
+        <i class="fa fa-search"></i>
+        <!-- Search -->
+      </button>
+      &nbsp;
+      <button
+        ng-click="removeFilter()"
+        type="button"
+        class="btn btn-primary btn-sm"
+      >
+        &nbsp;Clear&nbsp;
+      </button>
+    </div>
+  </form>
+  <div id="ordersTableDiv">
+    <table id="ordersTable" class="table table-condensed">
+      <thead class="">
+        <tr>
+          <th scope="col">OrderID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Organisation</th>
+          <th scope="col">Location</th>
+          <th scope="col">Channel</th>
+          <th scope="col">Date Time</th>
+          <th scope="col">RSMID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="order in orders">
+          <th scope="row">
+            <a ng-click="onOrderIdClick(order)" href="#orderDetails"
+              >#{{order.orderId}}</a
+            >
+          </th>
+          <td>{{order.customerName}}</td>
+          <td>{{order.organisationName}}</td>
+          <td>{{order.locationName}}</td>
+          <td>{{order.channel}}</td>
+          <td>{{order.createdAt | date:'dd/MM/yyyy hh:mm a'}}</td>
+          <td ng-show="order.rsmId!=null">{{order.rsmId}}</td>
+          <td id="nullText" ng-show="order.rsmId==null"><a ng-click="onOrderIdClick(order)" href="#orderDetails"
+            >Unsegmented</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="no_orders_found_txt" ng-show="totalOrders==0"><p>No Orders Found</p></div>
+
+  <div class="clearfix">
+    <span id="totalOrdersTxt">Total Orders - {{totalOrders}}</span>
+    <ul class="pagination">
+      <li class="page-item" ng-class="{disabled : activePage == 1}">
+        <a href="" ng-click="onPaginationPreviousLinkClick()" class="page-link"
+          >Previous</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink1, disabled : pagination.pageLink1=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink1)"
+          ng-hide="pagination.pageLink1==''"
+          >{{pagination.pageLink1}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink2, disabled : pagination.pageLink2=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink2)"
+          ng-hide="pagination.pageLink2==''"
+          >{{pagination.pageLink2}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink3, disabled : pagination.pageLink3=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink3)"
+          ng-hide="pagination.pageLink3==''"
+          >{{pagination.pageLink3}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink4, disabled : pagination.pageLink4=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink4)"
+          ng-hide="pagination.pageLink4==''"
+          >{{pagination.pageLink4}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink5, disabled : pagination.pageLink5=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink5)"
+          ng-hide="pagination.pageLink5==''"
+          >{{pagination.pageLink5}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink6, disabled : pagination.pageLink6=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink6)"
+          ng-hide="pagination.pageLink6==''"
+          >{{pagination.pageLink6}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{active : activePage == pagination.pageLink7, disabled : pagination.pageLink7=='...'}"
+      >
+        <a
+          href=""
+          class="page-link"
+          ng-click="onPaginationPageClick(pagination.pageLink7)"
+          ng-hide="pagination.pageLink7==''"
+          >{{pagination.pageLink7}}</a
+        >
+      </li>
+      <li
+        class="page-item"
+        ng-class="{disabled : activePage == totalPageCount}"
+      >
+        <a href="" ng-click="onPaginationNextLinkClick()" class="page-link"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </div>
+  <br /> 
+</div>
