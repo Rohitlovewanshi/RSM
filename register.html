@@ -1,0 +1,233 @@
+<div class="login-register-page">
+  <div class="row">
+    <div class="col-md-2 cognizant-logo"><b>Cognizant</b></div>
+    <div class="col-md-7 text-center rsm-title">
+      &nbsp;&nbsp;<b>Revenue Segmentation</b>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div
+          class="alert alert-danger center"
+          id="loginErrorAlert"
+          ng-show="loginErrorAlert"
+        >
+          Server Error
+        </div>
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body pt-4 px-4 pb-3">
+            <h5 class="card-title text-center mb-5 fw-light fs-5">
+              Create an Account
+            </h5>
+            <form
+              name="registerform"
+              novalidate
+              ng-submit="register(user)"
+              class="custom-form-group"
+            >
+              <div class="form-group">
+                <label class="required form-control-placeholder"
+                  >First Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="user.firstName"
+                  name="firstName"
+                  required
+                />
+                <div
+                  class="text-danger"
+                  ng-show="registerform.firstName.$touched && !user.firstName.length"
+                >
+                  <small>Please enter first name</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="user.lastName"
+                  name="lastName"
+                  required
+                />
+                <div
+                  class="text-danger"
+                  ng-show="registerform.lastName.$touched && !user.lastName.length"
+                >
+                  <small>Please provide your last name</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">Date of Birth</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  min="1900-01-01"
+                  max="{{currentDate | date:'yyyy-MM-dd'}}"
+                  ng-model="user.dob"
+                  name="dob"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="required">Mobile Number</label>
+                <div id="divPhoneForm" class="row mx-0">
+                  <input
+                    type="tel"
+                    class="form-control col-2 countryCodeForm"
+                    ng-model="user.countryCode"
+                    name="countryCode"
+                    required
+                  />
+                  <input
+                    id="inputMobileNumber"
+                    type="tel"
+                    class="form-control col ml-2"
+                    ng-model="user.mobileNumber"
+                    ng-minlength="10"
+                    name="mobileNumber"
+                    required
+                  />
+                </div>
+                <div
+                  class="text-danger"
+                  ng-show="registerform.mobileNumber.$touched && registerform.mobileNumber.$invalid && registerform.countryCode.$invalid"
+                >
+                  <small>Please enter valid mobile number</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">Email address</label>
+                <input
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                  required
+                  ng-model="user.email"
+                />
+                <div
+                  class="text-danger"
+                  ng-show="registerform.email.$invalid && registerform.email.$touched"
+                >
+                  <small>Please enter valid email address</small>
+                </div>
+                <div class="text-danger" ng-show="emailAlreadyExists">
+                  <small>Email address is already exists</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">Password</label>
+                <div class="input-group">
+                  <input
+                    type="{{typePassword ? 'text' : 'password' }}"
+                    class="form-control"
+                    name="password"
+                    required
+                    ng-model="user.password"
+                    data-toggle="password"
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text" ng-click="togglePassword()">
+                      <a href=""
+                        ><i class="fa fa-eye" ng-hide="typePassword"></i
+                        ><i class="fa fa-eye-slash" ng-hide="!typePassword"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="text-danger"
+                  ng-show="registerform.password.$touched && !user.password.length"
+                >
+                  <small>Please provide password</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="required">Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="confirmPassword"
+                  required
+                  ng-model="user.confirmPassword"
+                />
+                <div
+                  class="text-danger"
+                  ng-show="registerform.confirmPassword.$touched && user.password!=user.confirmPassword"
+                >
+                  <small>Password is not same</small>
+                </div>
+              </div>
+              <div class="d-grid center">
+                <input
+                  type="submit"
+                  class="btn btn-primary btn-login"
+                  value="Register"
+                  ng-hide="loading"
+                  ng-disabled="registerform.$invalid || user.password!=user.confirmPassword"
+                />
+                <button class="btn btn-primary" disabled ng-show="loading">
+                  <span class="spinner-border spinner-border-sm"></span>
+                  Loading..
+                </button>
+              </div>
+              <hr class="my-3" />
+              <div class="d-grid mb-2 center">
+                Already registerd? <a href="#login">Click here</a>
+              </div>
+              <div class="center my-3">
+                <small>© Cognizant Ltd. All rights reserved, 2021</small>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <marquee
+        id="movingText"
+        direction="left"
+        height="25"
+        width="100%"
+        scrollamount="11"
+      >
+        <i>"One-stop solution for Financial allocations"</i></marquee
+      >
+    </div>
+  </div>
+
+  <!-- Modal -->
+</div>
+
+<div
+  class="modal fade"
+  id="registerSuccessModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="registerSuccessModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div id="modalSuccessCard" class="animated fadeIn">
+        <div id="upper-side">
+          <i class="material-icons">check_circle</i>
+          <h3 id="status">Success</h3>
+        </div>
+        <div id="lower-side">
+          <p id="message">
+            Congratulations, your account has been successfully created.
+          </p>
+          <a
+            href="#login"
+            id="contBtn"
+            onclick="$('#registerSuccessModal').modal('hide')"
+            >Continue</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
