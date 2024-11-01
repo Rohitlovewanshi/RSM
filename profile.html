@@ -1,0 +1,67 @@
+<p class="current-date-time">
+    Date Time : {{currentDate | date: 'dd-MM-yyyy hh:mm a'}}
+</p>
+<div class="session-expired" ng-show="sessionExpired">
+  Your session is expired.<br />
+  Click <a href="#login">here</a> to login again.
+</div>
+<div id="profileView" class="container" ng-hide="sessionExpired">
+  <div class="row rounded bg-white mx-5">
+      <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{user.firstName}} {{user.lastName}}</span><span class="text-black-51">{{user.email}}</span><span class="text-black-51" ng-show="user.role.roleId==1">Admin</span><span class="text-black-51" ng-show="user.role.roleId==2">Agent</span><span> </span></div>
+      </div>
+      <div class="col-md-8">
+          <div class="p-3 py-4">
+            <div class="alert alert-success center" role="alert" ng-show="success">
+                Profile updated successfully !!
+            </div>
+            <div class="alert alert-danger center" role="alert" ng-show="serverError">
+                Server Error
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Profile Settings</h4>
+            </div>
+            <form name="editProfileForm" novalidate ng-submit="saveChanges(user)">
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label class="labels">First Name</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="enter first name" ng-model="user.firstName" ng-disabled="viewProfileMode" required>
+                        <div class="text-danger" ng-show="editProfileForm.firstName.$touched && !user.firstName.length"><small>Please enter first name</small></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Last Name</label>
+                        <input type="text" class="form-control" placeholder="enter last name" name="lastName" ng-model="user.lastName" ng-disabled="viewProfileMode" required>
+                        <div class="text-danger" ng-show="editProfileForm.lastName.$touched && !user.lastName.length"><small>Please enter last name</small></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Date of Birth</label>
+                        <input type="date" class="form-control" min="1900-01-01" max="{{currentDate | date:'yyyy-MM-dd'}}" name="dob" ng-model="user.dob" format-date ng-disabled="viewProfileMode" required>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <label class="labels">Mobile Number</label>
+                        <div class="row mx-0">
+                            <input type="tel" class="form-control col-2 mr-2 countryCodeForm" placeholder="+" name="countryCode" ng-model="user.countryCode" ng-disabled="viewProfileMode" required>
+                            <input type="tel" class="form-control col" placeholder="enter phone number" name="mobileNumber" ng-model="user.mobileNumber" ng-minlength="10" ng-disabled="viewProfileMode" required>
+                        </div>
+                        <div class="text-danger" ng-show="editProfileForm.mobileNumber.$touched && editProfileForm.mobileNumber.$invalid"><small>Please enter valid mobile number</small></div>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <label class="labels">Email Address</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp" name="email" placeholder="enter email address" ng-model="user.email" disabled required>
+                        <div class="text-danger" ng-show="editProfileForm.email.$invalid && editProfileForm.email.$touched"><small>Please enter valid email</small></div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <input class="btn btn-primary profile-button" type="button" ng-click="onEditBtnClick()" ng-show="viewProfileMode" value="Edit Profile"></input>
+                    <button class="btn btn-primary" disabled ng-show="loading"><span class="spinner-border spinner-border-sm"></span>Loading..</button>
+                    <input class="btn btn-primary profile-button" type="submit" ng-hide="viewProfileMode || loading" ng-disabled="editProfileForm.$invalid" value="Save Changes">
+                </div>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
